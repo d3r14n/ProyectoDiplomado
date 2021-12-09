@@ -30,19 +30,19 @@ describe('payment check', () => {
         if (agent) {
             agent.close();
         }
-        done();
+        //done();
         utils.removeFile(PAYMENT_FILE_PATH)
           .then(() => done() )
     });
 
-    it('Should generate an random price', (done) => {
+    it('Should generate a random price', (done) => {
         payment.create(req, res);
         setTimeout(() => {
             utils.getFromFile(PAYMENT_FILE_PATH)
                 .then(data => {
                     data.length.should.eql(1);
                     done();
-                })
+                }).catch(done);
         }, 500);
     });
 
@@ -67,8 +67,8 @@ describe('payment check', () => {
         chai.request(server)
             .get('/payment/promos')
             .then(promos => {
-                promos.body.length.should.eql(5);
-                done();
+                promos.body.length.should.eql(5)
+                .then( ()=> done() );
             })
     });
 });

@@ -3,6 +3,7 @@ const fs = require('fs');
 const shortid = require('shortid');
 // To generate a unique API KEY, use shortid.generate()
 const LINE_ENDING = require('os').EOL;
+const API_KEY = () => {return shortid.generate();}
 
 
 module.exports = function (req, res) {  
