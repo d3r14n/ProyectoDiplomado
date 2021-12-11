@@ -1,5 +1,5 @@
 const fs = require('fs');
-const VALID_KEYS_PATH = __dirname + '/valid-keys.txt';
+const VALID_KEYS_PATH = __dirname + '\\valid-keys.txt';
 const utils = require('./test/utils');
 
 module.exports = async function (req, res, next) {

@@ -26,3 +26,7 @@ app.use('/payment', paymentRouter);
 
 
 module.exports = app;
+
+app.listen(3000, () => {
+    console.log("SERVER on PORT 3000")
+})

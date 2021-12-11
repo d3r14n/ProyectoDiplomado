@@ -18,20 +18,20 @@ describe('express_authentication', async () => {
         req = new Request();
         res = new Response();
         next = sinon.stub();
-        /*utils.generateKeysFile()
+        utils.generateKeysFile()
             .then(() => {
                 done();
-            }).catch(done);*/
+            }).catch(done);
     });
 
     afterEach((done) => {
         if (agent) {
             agent.close();
         }
-        /*utils.clearKeysFile()
+        utils.clearKeysFile()
             .then(() => {
                 done();
-            }).catch(done);*/
+            }).catch(done);
     });
 
     it('Should generate an API key and add it to file', (done) => {

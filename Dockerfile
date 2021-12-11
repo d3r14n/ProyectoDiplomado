@@ -8,13 +8,13 @@ WORKDIR /home/node/app
 
 COPY --chown=node package*.json ./
 
+COPY --chown=node . ${WORKDIR}
+
 RUN npm install
 
-COPY --chown=node . .
-
-RUN npm run build
+RUN npm run test
 
 ENV HOST=0.0.0.0 PORT=3000
 EXPOSE ${PORT}
 
-CMD [ "node", "." ]
+CMD [ "node", "app" ]
