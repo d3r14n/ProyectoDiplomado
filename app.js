@@ -18,7 +18,7 @@ var dd_options = {
     'response_code':true,
     'tags' : ['app:diploproyect']
 }
-var connect_datadog = require('connect-datadog')(dd_options);
+//var connect_datadog = require('connect-datadog')(dd_options);
 
 Sentry.init({
     dsn: "https://ea7f93daef9c41d2bf2797106a43dc3b@o1059722.ingest.sentry.io/6103729",
@@ -55,7 +55,7 @@ app.use('/payment', paymentRouter);
 app.use('/operations', operationsRouter);
 app.use('/shipment', shipmentRouter);
 
-app.use(connect_datadog);
+//app.use(connect_datadog);
 
 module.exports = app;
 
