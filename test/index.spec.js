@@ -11,7 +11,7 @@ const Promise = require('bluebird');
 
 chai.use(chaiHttp);
 
-describe('express_authentication', () => {
+describe('express_authentication', async () => {
     let req, res, next, agent;
 
     beforeEach((done) => {
@@ -21,7 +21,7 @@ describe('express_authentication', () => {
         utils.generateKeysFile()
             .then(() => {
                 done();
-            })
+            }).catch(done);
     });
 
     afterEach((done) => {
@@ -31,7 +31,7 @@ describe('express_authentication', () => {
         utils.clearKeysFile()
             .then(() => {
                 done();
-            })
+            }).catch(done);
     });
 
     it('Should generate an API key and add it to file', (done) => {
@@ -41,7 +41,7 @@ describe('express_authentication', () => {
                 .then(data => {
                     data.length.should.eql(1);
                     done();
-                })
+                }).catch(done);
         }, 500);
     });
 
@@ -57,7 +57,7 @@ describe('express_authentication', () => {
                     const uniqKeys = uniq(data);
                     uniqKeys.length.should.eql(data.length);
                     done();
-                })
+                }).catch(done);
         }, 500);
     });
 
@@ -73,7 +73,7 @@ describe('express_authentication', () => {
             .then(keys => {
                 keys[0].should.equal(response.body.apiKey);
                 done();
-            })
+            }).catch(done);
     });
 
     it('Should send a 401 if the x-api-key header is not present', done => {
@@ -83,7 +83,7 @@ describe('express_authentication', () => {
                 response.status.should.equal(401);
                 next.callCount.should.eql(0);
                 done();
-            })
+            }).catch(done);
     });
 
     it('Should send a 401 if the x-api-key is invalid', done => {
@@ -93,7 +93,7 @@ describe('express_authentication', () => {
             .then(response => {
                 response.status.should.equal(401);
                 done();
-            })
+            }).catch(done);
     });
 
 
@@ -117,7 +117,7 @@ describe('express_authentication', () => {
                     response.status.should.match(/^20[0|1]/);
                 });
                 done();
-            })
+            }).catch(done);
     });
 
     it('Should not require auth headers for unprotected routes', done => {
@@ -140,7 +140,7 @@ describe('express_authentication', () => {
                     }
                 });
                 done();
-            })
+            }).catch(done);
 
     });
 });

@@ -22,7 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/tasks', tasksRouter);
-//app.use('/payment', paymentRouter);
+app.use('/payment', paymentRouter);
 
 
 module.exports = app;
+
+app.listen(3000, () => {
+    console.log("SERVER on PORT 3000")
+})

@@ -4,9 +4,12 @@ var paymentController = require('../controllers/payment.controller');
 var middleware = require('../middleware');
 
 
-//router.use(middleware);
+router.use(middleware);
 
 router
-    .get('/promos', paymentController.getPromos);
+    .get('/payment/promos', paymentController.getPromos);
+    /*.get('/payment/promos', function(req, res) {
+        res.json(paymentController.getPromos);
+    });*/
 
 module.exports = router;
