@@ -30,3 +30,15 @@ jobs:
        run: npm install
      - name: Ejecutar test
        run: npm run test
+     - name: Iniciar Sesion en Heroku
+       env:
+         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+       run: heroku container:login
+     - name: Construir en Heroku
+       env:
+         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+       run: heroku container:push -a diploproyect web
+     - name: Release en Heroku
+       env:
+         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+       run: heroku container:release -a diploproyect web
