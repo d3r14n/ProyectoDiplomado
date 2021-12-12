@@ -1,15 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var paymentController = require('../controllers/payment.controller');
-var middleware = require('../middleware');
 
+router.get("/", function(req, res){
+    res.send("Welcome to Payment");
+});
 
-router.use(middleware);
+router.get('/promos', paymentController.getPromos);
 
-router
-    .get('/payment/promos', paymentController.getPromos);
-    /*.get('/payment/promos', function(req, res) {
-        res.json(paymentController.getPromos);
-    });*/
+router.get('/discount', paymentController.applyDiscount);
 
 module.exports = router;

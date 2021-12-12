@@ -10,12 +10,14 @@ const {Request, Response} = require('./mock');
 const utils = require('./utils');
 const {uniq} = require('lodash');
 const Promise = require('bluebird');
-const { expect } = require('chai');
+const { expect, util } = require('chai');
 const { get } = require('superagent');
+const { response } = require('../app');
+const { consoleSandbox } = require('@sentry/utils');
 
 chai.use(chaiHttp);
 
-describe('payment check', () => {
+describe('payment check', async () => {
     let req, res, next, agent;
 
     beforeEach((done) => {
@@ -25,7 +27,7 @@ describe('payment check', () => {
         utils.generatePaymentFile()
             .then(() => {
                 done();
-            })
+            }).catch(done);
     });
 
     afterEach((done) => {
@@ -34,7 +36,9 @@ describe('payment check', () => {
         }
         //done();
         utils.removeFile(PAYMENT_FILE_PATH)
-          .then(() => done() )
+            .then(() =>{
+                done();
+            }).catch(done);
     });
 
     it('Should generate a random price', (done) => {
@@ -60,48 +64,60 @@ describe('payment check', () => {
                     const uniqKeys = uniq(data);
                     uniqKeys.length.should.eql(data.length);
                     done();
-                })
+                }).catch(done);
         }, 500);
     });
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /*
     it('Should return 5 promo codes', done => {
         chai.request(server)
             .get('/payment/promos')
-            /*.get('/payment/promos', function(req, res) {
-                expect(res.body).to.have.lengthOf(5)
-                .then( () => done() );
-            })*/
-            /*
-            .end( function(err, res){
-                expect(res.body).to.have.lengthOf(5);
-            })
-            .then( () => done() );]*/
-            /*.then(promos => {
-                //promos.body.length.should.eql(5)
-                expect(promos.body).to.have.lengthOf(5)
-                .then( ()=> done() );
-            })]/
-            .end((err, res) => {
-                console.log("LOG: " + JSON.stringify(res));
-                should.exist(res.body);
-                //res.body.should.have.lengthOf(5);
-                res.body.length.should.be.eql(5);
-                done();
-            })
-            /*
-            .get('/payment/promos')
             .then(promos => {
-                promos.body.length.should().be.eql(5);
+                promos.body.length.should.eql(5);
                 done();
-            })*/
-            /*
-            .get('/payment/promos')
-            .then(response => {
-                should.equal(response.body.length, 5);
-                //response.body.length.should.equal(5)
+            }).catch(done);
+    });
+
+    it('Should apply a discount', done =>{
+        chai.request(server)
+        .get('/payment/discount')
+        .then(response =>{
+            utils.getFromFile(PAYMENT_FILE_PATH)
+            .then(data =>{
+                (response.body.precio - response.body.descuento).toString().should.eql(data[0]);
                 done();
-            }).catch(done);/
-    });]*/
+            }).catch(done);
+        })
+    })
+
+    it('Should apply 5 discounts', done =>{
+        let n = 5;
+        for(let i = 0; i < n; i++)
+        {
+            chai.request(server)
+            .get('payment/discount')
+            .then(response =>{
+                utils.getFromFile(PAYMENT_FILE_PATH)
+                .then(data => {
+                    (response.body.precio - response.body.descuento).toString().should.eql(data[data.length]);
+                })
+            });
+        }
+        done();
+    });
+
+    it('Should apply 10 discounts', done =>{
+        let n = 10;
+        for(let i = 0; i < n; i++)
+        {
+            chai.request(server)
+            .get('payment/discount')
+            .then(response =>{
+                utils.getFromFile(PAYMENT_FILE_PATH)
+                .then(data => {
+                    (response.body.precio - response.body.descuento).toString().should.eql(data[data.length]);
+                })
+            });
+        }
+        done();
+    });
 });
