@@ -1,15 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var tasksController = require('../controllers/tasks.controller');
-var middleware = require('../middleware');
+var operationsController = require('../controllers/operations.controller');
 
-
-router.get('/:id', tasksController.getById);
-
-router.use(middleware);
-
-router
-    .post('/', tasksController.create)
-    .get('/', tasksController.getAll);
+router.get('/', function(req, res){
+    res.send("Welcome to Operations");
+});
+router.get('/sum/:num1/:num2', operationsController.sum);
+router.get('/substract/:num1/:num2', operationsController.substract);
+router.get('/multiply/:num1/:num2', operationsController.multiply);
+router.get('/divide/:num1/:num2', operationsController.divide);
 
 module.exports = router;

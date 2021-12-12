@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="5.0340" tests="10" failures="4">
-  <testsuite name="Root Suite" timestamp="2021-12-11T01:28:37" tests="0" time="0.0000" failures="0">
+<testsuites name="Mocha Tests" time="3.0120" tests="10" failures="4">
+  <testsuite name="Root Suite" timestamp="2021-12-12T06:56:20" tests="0" time="0.0000" failures="0">
   </testsuite>
-  <testsuite name="express_authentication" timestamp="2021-12-11T01:28:37" tests="7" file="C:\Users\naire\OneDrive\Escritorio\proyect\test\index.spec.js" time="0.5210" failures="2">
-    <testcase name="express_authentication Should generate an API key and add it to file" time="0.5200" classname="Should generate an API key and add it to file">
+  <testsuite name="express_authentication" timestamp="2021-12-12T06:56:20" tests="7" file="C:\Users\naire\OneDrive\Escritorio\proyect\test\index.spec.js" time="0.5070" failures="2">
+    <testcase name="express_authentication Should generate an API key and add it to file" time="0.5060" classname="Should generate an API key and add it to file">
     </testcase>
     <testcase name="express_authentication Should generate 5 unique API Keys" time="0.0010" classname="Should generate 5 unique API Keys">
       <failure message="EPERM: operation not permitted, open &apos;C:\Users\naire\OneDrive\Escritorio\proyect\valid-keys.txt&apos;" type="Error"><![CDATA[Error: EPERM: operation not permitted, open 'C:\Users\naire\OneDrive\Escritorio\proyect\valid-keys.txt'
@@ -15,18 +15,16 @@
       <failure message="EPERM: operation not permitted, unlink &apos;C:\Users\naire\OneDrive\Escritorio\proyect\valid-keys.txt&apos;" type="Error"><![CDATA[Error: EPERM: operation not permitted, unlink 'C:\Users\naire\OneDrive\Escritorio\proyect\valid-keys.txt']]></failure>
     </testcase>
   </testsuite>
-  <testsuite name="payment check" timestamp="2021-12-11T01:28:38" tests="3" file="C:\Users\naire\OneDrive\Escritorio\proyect\test\payment.spec.js" time="4.5130" failures="2">
-    <testcase name="payment check Should generate a random price" time="0.5050" classname="Should generate a random price">
+  <testsuite name="payment check" timestamp="2021-12-12T06:56:21" tests="3" file="C:\Users\naire\OneDrive\Escritorio\proyect\test\payment.spec.js" time="2.5050" failures="2">
+    <testcase name="payment check Should generate a random price" time="0.5030" classname="Should generate a random price">
     </testcase>
-    <testcase name="payment check &quot;before each&quot; hook for &quot;Should generate 5 random prices&quot;" time="2.0060" classname="&quot;before each&quot; hook for &quot;Should generate 5 random prices&quot;">
+    <testcase name="payment check &quot;before each&quot; hook for &quot;Should generate 5 random prices&quot;" time="2.0020" classname="&quot;before each&quot; hook for &quot;Should generate 5 random prices&quot;">
       <failure message="Timeout of 2000ms exceeded. For async tests and hooks, ensure &quot;done()&quot; is called; if returning a Promise, ensure it resolves. (C:\Users\naire\OneDrive\Escritorio\proyect\test\payment.spec.js)" type="Error"><![CDATA[Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (C:\Users\naire\OneDrive\Escritorio\proyect\test\payment.spec.js)
     at listOnTimeout (internal/timers.js:557:17)
     at processTimers (internal/timers.js:500:7)]]></failure>
     </testcase>
-    <testcase name="payment check &quot;after each&quot; hook for &quot;Should generate 5 random prices&quot;" time="2.0020" classname="&quot;after each&quot; hook for &quot;Should generate 5 random prices&quot;">
-      <failure message="Timeout of 2000ms exceeded. For async tests and hooks, ensure &quot;done()&quot; is called; if returning a Promise, ensure it resolves. (C:\Users\naire\OneDrive\Escritorio\proyect\test\payment.spec.js)" type="Error"><![CDATA[Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (C:\Users\naire\OneDrive\Escritorio\proyect\test\payment.spec.js)
-    at listOnTimeout (internal/timers.js:557:17)
-    at processTimers (internal/timers.js:500:7)]]></failure>
+    <testcase name="payment check &quot;after each&quot; hook for &quot;Should generate 5 random prices&quot;" time="0.0000" classname="&quot;after each&quot; hook for &quot;Should generate 5 random prices&quot;">
+      <failure message="EPERM: operation not permitted, unlink &apos;C:\Users\naire\OneDrive\Escritorio\proyect\payment-generated.txt&apos;" type="Error"><![CDATA[Error: EPERM: operation not permitted, unlink 'C:\Users\naire\OneDrive\Escritorio\proyect\payment-generated.txt']]></failure>
     </testcase>
   </testsuite>
 </testsuites>

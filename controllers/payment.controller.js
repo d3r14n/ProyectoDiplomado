@@ -13,9 +13,15 @@ module.exports = {
 
     applyDiscount: function (req, res) {
         //debera de restar una cantidad a cada precio en payment-generated.txt
-        const fd = fs.readFile(PAYMENT_FILE_PATH, {encoding: 'utf-8'}, (err, data) => {
-            if (err) reject(err);
-            else res.json({ message: data * 0.8 });
+        var cantidadARestar = Math.floor(Math.random() * (500))
+        var precioTotal = faker.commerce.price();
+        const fd = fs.openSync(PAYMENT_FILE_PATH, 'a');
+        fs.appendFileSync(fd, (precioTotal - cantidadARestar) + LINE_ENDING,
+        {encoding: 'utf-8'});
+        res.json({
+            precio: precioTotal,
+            descuento: cantidadARestar,
+            total: (precioTotal - cantidadARestar),
         });
     },
 
