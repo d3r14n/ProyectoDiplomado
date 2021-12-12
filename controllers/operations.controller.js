@@ -1,17 +1,26 @@
+const { result } = require("lodash");
+
 module.exports = {
     sum: function (req, res) {
-        res.status(201).send();
+        res.json((parseFloat(req.params.num1) + parseFloat(req.params.num2)));
     },
 
     substract: function (req, res) {
-        res.status(201).send();
+        res.json((parseFloat(req.params.num1) - parseFloat(req.params.num2)));
     },
 
     multiply: function (req, res) {
-        res.status(201).send();
+        res.json((parseFloat(req.params.num1) * parseFloat(req.params.num2)));
     },
 
     divide: function (req, res) {
-        res.status(201).send();
+        if(req.params.num2 == 0)
+        {
+            res.json("inf")
+        }
+        else
+        {
+        res.json((parseFloat(req.params.num1) / parseFloat(req.params.num2)));
+        }
     }
 };
